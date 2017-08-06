@@ -1,0 +1,12 @@
+{
+    "name": "Блог путшественника",
+    "short_name": "Блог путшественника",
+    "lang": "ru",
+    "start_url": "./",
+    "display": "standalone",
+    "theme_color": "orange",
+    "icons": [{
+        "src": "icon.png",
+        "size": "192x192"
+    }]
+}
