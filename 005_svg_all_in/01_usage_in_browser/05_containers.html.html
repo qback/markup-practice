@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Контейнеры</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            padding: 50px;
+        }
+
+        p {
+            font-size: 30px;
+            padding: 10px 0;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            margin: 50px 0 20px;
+        }
+
+        svg {
+            border: 1px solid red;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Контейнеры</h1>
+
+    <h2>Defs</h2>
+    <svg>
+        <!-- не видим -->
+        <defs>
+            <circle id="custom-circle" r="25" cx="150" cy="50" />
+        </defs>
+
+        <use xlink:href="#custom-circle" />
+        <use xlink:href="#custom-circle" x="80" fill="red" />
+    </svg>
+
+    <h2>g</h2>
+
+    <svg>
+        <g fill="red">
+            <circle r="25" cx="150" cy="50" />
+            <circle r="25" cx="240" cy="50" />
+        </g>
+    </svg>
+
+    <h2>Symbol</h2>
+    <svg>
+        <!-- не видим -->
+        <symbol id="custom-symbol" viewBox="0 0 150 75">
+            <circle r="25" cx="150" cy="50" />
+        </symbol>
+
+        <use xlink:href="#custom-symbol" />
+        <use xlink:href="#custom-symbol" x="80" fill="red" />
+    </svg>
+
+
+</body>
+
+</html>
+
+<!-- Статья на заметку: https://habrahabr.ru/post/230443/ -->
