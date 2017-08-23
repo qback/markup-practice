@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Отображение иконок, используя внешний спрайт</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: sans-serif;
+		}
+
+		body {
+			padding: 50px;
+		}
+
+		p {
+			font-size: 30px;
+			padding: 10px 0;
+		}
+
+		h1 {
+			margin-bottom: 50px;
+		}
+
+		h2 {
+			margin: 50px 0 20px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>SVG-иконки</h1>
+
+	<p>Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Бросил встретил заглавных эта, заголовок
+		путь вопроса имеет несколько напоивший живет маленький последний большой скатился курсивных но жаренные всеми маленькая
+		всемогущая диких ipsum свою себя предложения страна подпоясал рыбными. Буквенных снова несколько скатился. Запятой коварный
+		ему назад речью путь заголовок.</p>
+
+	<svg>
+		<use xlink:href="img/symbols.svg#icon-about" />
+	</svg>
+
+	<svg>
+		<use xlink:href="img/symbols.svg#icon-approval" />
+	</svg>
+
+	<svg>
+		<use xlink:href="img/symbols.svg#icon-automatic" />
+	</svg>
+
+</body>
+
+</html>
+
+<!-- Ресурсы на заметку:
+	https://jonathantneal.github.io/svg4everybody/ - полифил для отображения в старых браузерах (IE 9-11) -->
