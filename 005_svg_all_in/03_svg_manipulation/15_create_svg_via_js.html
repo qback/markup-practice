@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Создание SVG с помощью JS</title>
+    <style>
+        svg {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <svg class="field" width="500" height="500" viewBox="0 0 500 500">
+
+    </svg>
+
+    <button id="create">Кружооочки!!!</button>
+
+    <script>
+        const field = document.querySelector('.field');
+        const svgNS = 'http://www.w3.org/2000/svg';
+
+        function createCircle() {
+
+            const randomX = Math.floor(Math.random() * 500)
+            const randomY = Math.floor(Math.random() * 500)
+
+            // createElementNS - Creates an element with the specified namespace URI and qualified name.
+            const myCircle = document.createElementNS(svgNS, "circle");
+            myCircle.setAttributeNS(null, "r", 5);
+            myCircle.setAttributeNS(null, "cx", randomX);
+            myCircle.setAttributeNS(null, "cy", randomY);
+            myCircle.setAttributeNS(null, "fill", "blue");
+            field.appendChild(myCircle);
+        }
+
+        const btn = document.querySelector('#create');
+
+        btn.addEventListener('click', () => {
+            setInterval(createCircle, 100);
+        });
+    </script>
+
+</body>
+
+</html>
