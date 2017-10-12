@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.burger {
+			cursor: pointer;
+		}
+
+		.burger_state_active .burger__bar:nth-child(1) {
+			transform: rotate(-45deg) translate(-8px, 6px);
+		}
+
+		.burger_state_active .burger__bar:nth-child(2) {
+			opacity: 0;
+		}
+
+		.burger_state_active .burger__bar:nth-child(3) {
+			transform: rotate(45deg) translate(-10px, -8px);
+		}
+
+		.burger div {
+			width: 35px;
+			height: 5px;
+			background-color: black;
+			margin: 6px 0;
+			transition: .4s all ease;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="burger">
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+	<hr>
+	<div class="burger burger_kind_animated">
+		<div class="burger__bar"></div>
+		<div class="burger__bar"></div>
+		<div class="burger__bar"></div>
+	</div>
+	<script>
+		const icon = document.querySelector('.burger_kind_animated');
+		icon.addEventListener('click', ev => {
+			icon.classList.toggle('burger_state_active');
+		})
+
+	</script>
+</body>
+
+</html>

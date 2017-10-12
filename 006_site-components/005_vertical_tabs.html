@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.tabs {
+			display: flex;
+		}
+
+		.tab {
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			border: 1px solid grey;
+			background-color: lightgrey;
+		}
+
+		.tablink {
+			background-color: inherit;
+			border: none;
+			cursor: pointer;
+			padding: 14px 16px;
+			transition: 0.3s all;
+			outline: none;
+		}
+
+		.tablink:hover {
+			background-color: darkgrey;
+		}
+
+		.tablink.active {
+			background-color: darkgrey;
+		}
+
+		.content {
+			display: flex;
+		}
+
+		.tabcontent {
+			border: 1px solid #ccc;
+			border-left: 0;
+			padding: 6px 12px;
+			position: relative;
+		}
+
+		.tabcontent span {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			cursor: pointer;
+		}
+
+		.tabcontent {
+			animation: fadeEffect .5s;
+		}
+
+		@keyframes fadeEffect {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="tabs">
+		<div class="tab">
+			<button class="tablink" data-city="London">London</button>
+			<button class="tablink" data-city="Paris">Paris</button>
+			<button class="tablink" data-city="Tokyo">Tokyo</button>
+		</div>
+
+		<div class="content">
+			<div id="London" class="tabcontent">
+				<h3>London</h3>
+				<p>London is the capital city of England.</p>
+				<span>x</span>
+			</div>
+
+			<div id="Paris" class="tabcontent">
+				<h3>Paris</h3>
+				<p>Paris is the capital of France.</p>
+				<p>Paris is the capital of France.</p>
+				<p>Paris is the capital of France.</p>
+				<p>Paris is the capital of France.</p>
+				<p>Paris is the capital of France.</p>
+				<span>x</span>
+			</div>
+
+			<div id="Tokyo" class="tabcontent">
+				<h3>Tokyo</h3>
+				<p>Tokyo is the capital of Japan.</p>
+				<span>x</span>
+			</div>
+		</div>
+
+	</div>
+	<script>
+		const tabs = document.querySelector('.tabs');
+		const tablinks = Array.from(tabs.getElementsByClassName('tablink'));
+		const tabcontents = Array.from(tabs.getElementsByClassName('tabcontent'));
+
+		function clearAll() {
+			tablinks.forEach((item) => {
+				item.classList.remove('active');
+			});
+			tabcontents.forEach((item) => {
+				item.style.display = 'none';
+			})
+		}
+		function showCity(name) {
+			const link = document.querySelector(`.tablink[data-city=${name}]`);
+			const content = document.getElementById(name);
+			link.classList.add('active');
+			content.style.display = '';
+		}
+
+		clearAll();
+		showCity('Paris');
+
+		tabs.addEventListener('click', openCity);
+		tabs.addEventListener('click', closeParent);
+
+		function openCity({ target }) {
+			const tablink = target.closest('.tablink');
+			if (tablink) {
+				const cityName = tablink.dataset.city;
+				clearAll();
+				showCity(cityName);
+			}
+		}
+		function closeParent({ target }) {
+			const span = target.closest('.tabcontent span');
+			if (span) {
+				span.parentElement.style.display = 'none';
+			}
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.btn-group {
+			display: flex;
+		}
+
+		.btn-group_pos_vertical {
+			flex-direction: column;
+			width: 200px;
+		}
+
+		.btn-group button {
+			background-color: green;
+			border: 1px solid darkorange;
+			color: white;
+			padding: 10px 24px;
+			cursor: pointer;
+		}
+
+		.btn-group_pos_horizontal button:not(:last-child) {
+			border-right: none;
+		}
+
+		.btn-group_pos_vertical button:not(:last-child) {
+			border-bottom: none;
+		}
+
+		.btn-group button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="btn-group btn-group_pos_horizontal">
+		<button>Apple</button>
+		<button>Samsungdssddsg
+			<br> sdasda </button>
+		<button>Sony</button>
+	</div>
+	<hr>
+	<div class="btn-group btn-group_pos_vertical">
+		<button>Apple</button>
+		<button>Samsungasfffffffff</button>
+		<button>Sony</button>
+	</div>
+
+</body>
+
+</html>

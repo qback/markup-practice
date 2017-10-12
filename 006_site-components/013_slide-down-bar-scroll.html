@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		.navbar {
+			background-color: blueviolet;
+			position: fixed;
+			top: -50px;
+			width: 100%;
+			transition: top .3s;
+			display: flex;
+		}
+
+		.navbar a {
+			color: white;
+			text-align: center;
+			padding: 15px;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+		<a href="#home">Home</a>
+		<a href="#news">News</a>
+		<a href="#contact">Contact</a>
+	</div>
+	<main>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+		<p>Some textxtxext</p>
+	</main>
+	<script>
+		const nav = document.querySelector('.navbar');
+		window.onscroll = function () {
+			nav.style.top = window.pageYOffset > 20 ? '0' : '-50px';
+		}
+	</script>
+</body>
+
+</html>

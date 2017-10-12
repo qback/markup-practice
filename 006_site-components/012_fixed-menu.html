@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		.navbar {
+			background-color: rebeccapurple;
+			position: fixed;
+			top: 0;
+			width: 100%;
+		}
+
+		.navbar.fixed {
+			background-color: rgb(58, 61, 221);
+			top: auto;
+			width: auto;
+			bottom: 0;
+			right: 0;
+		}
+
+		.navbar a {
+			display: inline-block;
+			color: whitesmoke;
+			text-align: center;
+			padding: 14px 16px;
+		}
+
+		.main {
+			margin-top: 30px;
+			margin-left: 20px
+		}
+	</style>
+</head>
+
+<body>
+	<div class="navbar">
+		<a href="#home">Home</a>
+		<a href="#news">News</a>
+		<a href="#contact">Contact</a>
+	</div>
+
+	<div class="main">
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+		<p>Some text some text some text some text..</p>
+	</div>
+	<script>
+		const navbar = document.querySelector('.navbar');
+		window.onscroll = function () {
+			if (!navbar.classList.contains('fixed') && window.pageYOffset > 0) {
+				navbar.classList.add('fixed');
+			} else if (window.pageYOffset === 0) {
+				navbar.classList.remove('fixed');
+			}
+		}
+	</script>
+</body>
+
+</html>

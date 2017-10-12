@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.tab-header {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.nav {
+			display: flex;
+		}
+
+		.tablink {
+			flex: 1;
+			background-color: rgb(189, 188, 188);
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 14px 16px;
+			font-size: 15px;
+		}
+
+		.tablink:hover,
+		.tablink.active {
+			background-color: #777;
+		}
+
+		.tabcontent {
+			color: white;
+			padding: 30px;
+			text-align: center;
+			background-color: gray;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="tab-header">
+		<div class="content">
+			<div id="London" class="tabcontent">
+				<h3>London</h3>
+				<p>London is the capital city of England.</p>
+			</div>
+
+			<div id="Paris" class="tabcontent">
+				<h3>Paris</h3>
+				<p>Paris is the capital of France.</p>
+			</div>
+
+			<div id="Tokyo" class="tabcontent">
+				<h3>Tokyo</h3>
+				<p>Tokyo is the capital of Japan.</p>
+				<p>Tokyo is the capital of Japan.</p>
+				<p>Tokyo is the capital of Japan.</p>
+				<p>Tokyo is the capital of Japan.</p>
+			</div>
+
+			<div id="Oslo" class="tabcontent">
+				<h3>Oslo</h3>
+				<p>Oslo is the capital of Norway.</p>
+			</div>
+		</div>
+		<div class="nav">
+			<button class="tablink" data-city="London" data-color="green">London</button>
+			<button class="tablink" data-city="Paris" data-color="blue">Paris</button>
+			<button class="tablink" data-city="Tokyo" data-color="purple">Tokyo</button>
+			<button class="tablink" data-city="Oslo" data-color="orange">Oslo</button>
+		</div>
+	</div>
+	<script>
+		const header = document.querySelector('.tab-header');
+		const links = Array.from(header.querySelectorAll('.tablink'));
+		const contents = Array.from(header.querySelectorAll('.tabcontent'));
+		function clearAll() {
+			links.forEach((item) => {
+				item.style.backgroundColor = '';
+			});
+			contents.forEach((item) => {
+				item.style.display = 'none';
+			})
+		}
+		function showCity(name, color) {
+			const link = document.querySelector(`.tablink[data-city=${name}]`);
+			const content = document.getElementById(name);
+			link.style.backgroundColor = color;
+			content.style.backgroundColor = color;
+			content.style.display = '';
+		}
+
+		clearAll();
+		showCity('London', 'green');
+
+		header.addEventListener('click', openCity);
+
+		function openCity({ target }) {
+			const tablink = target.closest('.tablink');
+			if (tablink) {
+				const cityName = tablink.dataset.city;
+				const color = tablink.dataset.color;
+				clearAll();
+				showCity(cityName, color);
+			}
+		}
+
+
+	</script>
+</body>
+
+</html>

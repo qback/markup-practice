@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.wrapper {
+			width: 400px;
+			margin: 0 auto;
+			position: relative;
+			border: 1px solid black;
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		.sidenav a {
+			position: absolute;
+			left: -80px;
+			transition: .3s;
+			padding: 15px;
+			width: 100px;
+			text-decoration: none;
+			font-size: 20px;
+			color: white;
+			border-radius: 0 5px 5px 0;
+			background-color: red;
+		}
+
+		.sidenav a:hover {
+			left: 0;
+		}
+
+		.sidenav a:first-child {
+			top: 20px;
+		}
+
+		.sidenav a:nth-child(2) {
+			top: 80px;
+		}
+
+		.sidenav a:nth-child(3) {
+			top: 140px;
+		}
+
+		.sidenav a:last-child {
+			top: 200px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="wrapper">
+		<div id="mySidenav" class="sidenav">
+			<a href="#" id="about">About</a>
+			<a href="#" id="blog">Blog</a>
+			<a href="#" id="projects">Projects</a>
+			<a href="#" id="contact">Contact</a>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
