@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		.row {
+			display: flex;
+			max-width: 600px;
+			flex-wrap: wrap;
+		}
+
+		.column {
+			flex-grow: 1;
+			flex-shrink: 1;
+			flex-basis: 100px;
+			max-width: 200px;
+			padding: 0 8px;
+			display: flex;
+		}
+
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			display: flex;
+			flex-direction: column;
+		}
+
+		.container {
+			padding: 0 16px;
+			flex: 1 1 auto;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.card-text {
+			flex: 1 1 auto;
+		}
+
+		.button {
+			border: none;
+			outline: 0;
+			display: inline-block;
+			padding: 8px;
+			color: white;
+			background-color: #000;
+			text-align: center;
+			cursor: pointer;
+			width: 100%;
+		}
+
+		.button:hover {
+			background-color: #555;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="row">
+		<div class="column">
+			<div class="card">
+				<img src="https://randomuser.me/api/portraits/men/18.jpg" alt="Jane" style="width:100%">
+				<div class="container">
+					<h2>Jane Doe</h2>
+					<p class="title">CEO &amp; Founder</p>
+					<div class="card-text">
+						<p>Some text that describes me lorem ipsum ipsum lorem.</p>
+						<p>Some text that describes me lorem ipsum ipsum lorem.</p>
+						<p>Some text that describes me lorem ipsum ipsum lorem.</p>
+						<p>example@example.com</p>
+					</div>
+
+					<p>
+						<button class="button">Contact</button>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="card">
+				<img src="https://randomuser.me/api/portraits/men/18.jpg" alt="Mike" style="width:100%">
+				<div class="container">
+					<h2>Mike Ross</h2>
+					<p class="title">Art Director</p>
+					<div class="card-text">
+						<p>Some text that describes me lorem ipsum ipsum lorem.</p>
+						<p>example@example.com</p>
+					</div>
+					<p>
+						<button class="button">Contact</button>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="card">
+				<img src="https://randomuser.me/api/portraits/men/18.jpg" alt="John" style="width:100%">
+				<div class="container">
+					<h2>John Doe</h2>
+					<p class="title">Designer</p>
+					<div class="card-text">
+						<p>Some text that describes me lorem ipsum ipsum lorem.</p>
+					</div>
+					<p>
+						<button class="button">Contact</button>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
