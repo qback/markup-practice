@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		.button {
+			padding: 15px 25px;
+			font-size: 24px;
+			text-align: center;
+			cursor: pointer;
+			outline: none;
+			color: #fff;
+			border: none;
+			position: relative;
+		}
+
+		.press {
+			background-color: #4CAF50;
+			border-radius: 15px;
+			box-shadow: 0 9px #999;
+		}
+
+		.press:active {
+			background-color: #3e8e41;
+			box-shadow: 0 5px #666;
+			transform: translateY(4px);
+		}
+
+		.hover {
+			border-radius: 4px;
+			background-color: #f4511e;
+			width: 200px;
+			transition: all 0.5s;
+			cursor: pointer;
+		}
+
+		.hover span {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			transition: 0.5s;
+		}
+
+		.hover span:after {
+			content: '\00bb';
+			position: absolute;
+			opacity: 0;
+			top: 0;
+			right: -20px;
+			transition: 0.5s;
+		}
+
+		.hover:hover span {
+			padding-right: 25px;
+		}
+
+		.hover:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		.ripple {
+			background-color: #4CAF50;
+			width: 200px;
+			transition: 0.4s;
+			overflow: hidden;
+			cursor: pointer;
+		}
+
+		.ripple::after {
+			content: "";
+			background: #90EE90;
+			display: block;
+			position: absolute;
+			padding-top: 300%;
+			padding-left: 350%;
+			margin-left: -40px!important;
+			margin-top: -120%;
+			opacity: 0;
+			transition: all 0.8s
+		}
+
+		.ripple:active::after {
+			padding: 0;
+			margin: 0;
+			opacity: 1;
+			transition: 0s
+		}
+	</style>
+
+</head>
+
+<body>
+	<button class="button press">Click Me</button>
+	<button class="button hover">
+		<span>Click Me </span>
+	</button>
+	<button class="button ripple">Click Me</button>
+
+</body>
+
+</html>
