@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		.main {
+			max-width: 1000px;
+			margin: auto;
+		}
+
+		h1 {
+			font-size: 50px;
+			word-break: break-all;
+		}
+
+		.row {
+			margin: 8px 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.row,
+		.row>.column {
+			padding: 8px;
+		}
+
+		.column {
+			width: 33.3%;
+			min-width: 300px;
+		}
+
+		.content {
+			padding: 10px;
+		}
+
+		.hide {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>PORTFOLIO</h2>
+
+	<div class="filter">
+		<input type="radio" name="category" checked value="column"> Show all
+		<input type="radio" name="category" value="nature"> Nature
+		<input type="radio" name="category" value="cars"> Cars
+		<input type="radio" name="category" value="people"> People
+		<div class="row">
+			<div class="column nature">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=nature&font=lobster" alt="Mountains" style="width:100%">
+					<h4>Mountains</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+			<div class="column nature">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=nature&font=lobster" alt="Lights" style="width:100%">
+					<h4>Lights</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+			<div class="column nature">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=nature&font=lobster" alt="Nature" style="width:100%">
+					<h4>Forest</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+
+			<div class="column cars">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=cars&font=lobster" alt="Car" style="width:100%">
+					<h4>Retro</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+			<div class="column cars">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=cars&font=lobster" alt="Car" style="width:100%">
+					<h4>Fast</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+			<div class="column cars">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=cars&font=lobster" alt="Car" style="width:100%">
+					<h4>Classic</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+
+			<div class="column people">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=people&font=lobster" alt="People" style="width:100%">
+					<h4>Girl</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+			<div class="column people">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=people&font=lobster" alt="People" style="width:100%">
+					<h4>Man</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+			<div class="column people">
+				<div class="content">
+					<img src="http://fakeimg.pl/600x400?text=people&font=lobster" alt="People" style="width:100%">
+					<h4>Woman</h4>
+					<p>Lorem ipsum dolor..</p>
+				</div>
+			</div>
+			<!-- END GRID -->
+		</div>
+	</div>
+
+	<script>
+		class Filter {
+			constructor(selector) {
+				this.container = document.querySelector(selector);
+				this.columns = Array.from(this.container.querySelectorAll('.column'));
+				this.radios = Array.from(this.container.querySelectorAll('input[type=radio]'));
+				this.events();
+			}
+			events() {
+				this.radios.forEach((item) => {
+					const radioValue = item.value;
+					item.addEventListener('click', this.filterSelection.bind(this, radioValue))
+				});
+			}
+			filterSelection(className) {
+				this.clearSelection();
+				const filtered = this.columns.filter((item) => {
+					return !item.classList.contains(className);
+				});
+				filtered.forEach((item) => {
+					item.classList.add('hide');
+				});
+			}
+			clearSelection() {
+				this.columns.forEach((item) => {
+					item.classList.remove('hide');
+				});
+			}
+		}
+		const filter = new Filter('.filter');
+	</script>
+</body>
+
+</html>
