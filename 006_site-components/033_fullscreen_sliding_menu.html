@@ -1,0 +1,116 @@
+<!-- https://www.youtube.com/watch?v=uGCvXhPIqKM -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="optimize.css">
+  <style>
+    .sidebar {
+      width: 100%;
+      position: fixed;
+      left: calc(-100% + 50px);
+      height: 100%;
+      background-color: tomato;
+      transition: .5s;
+    }
+
+    .sidebar_active {
+      left: 0;
+    }
+
+    .togglebar {
+      position: absolute;
+      width: 50px;
+      height: 100%;
+      right: 0;
+      background-color: aqua;
+      transition: .5s;
+    }
+
+    .toggle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+
+    .toggle span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: black;
+      margin-top: 7px;
+      transition: .5s;
+    }
+
+    .toggle_close span:nth-child(1) {
+      transform: rotate(-45deg);
+    }
+
+    .toggle_close span:nth-child(3) {
+      transform: rotate(45deg);
+    }
+
+    .toggle_close span:nth-child(2) {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+
+    .menu {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- begin .sidebar -->
+  <div class="sidebar">
+
+    <!-- begin togglebar -->
+    <div class="togglebar">
+      <div class="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <!-- end togglebar -->
+
+    <!-- begin .menu -->
+    <div class="menu">
+      <ul>
+        <li><a href="#">00001</a></li>
+        <li><a href="#">00002</a></li>
+        <li><a href="#">00003</a></li>
+        <li><a href="#">00004</a></li>
+        <li><a href="#">00005</a></li>
+      </ul>
+    </div>
+    <!-- end .menu -->
+  </div>
+  <!-- end .sidebar -->
+
+
+
+  <script src="jquery-3.2.1.min.js"></script>
+  <script>
+    $toggle = $('.toggle');
+    $sidebar = $('.sidebar');
+
+    $toggle.on('click', () => {
+      $toggle.toggleClass('toggle_close');
+      $sidebar.toggleClass('sidebar_active');
+    })
+
+  </script>
+</body>
+
+</html>
