@@ -1,0 +1,14 @@
+{
+  "name": "007_verstcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "circlr": "^3.1.1"
+  }
+}

@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+button {
+  background-color: skyblue;
+  border: 1px solid blue;
+}
+
+.modal {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -20%;
+  transition: all 0.2s;
+  transition-delay: 0.4s;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: thistle;
+  font-size: 0;
+  z-index: 1;
+}
+
+.modal__close {
+  align-self: center;
+}
+
+.modal--open {
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  font-size: 1em;
+}

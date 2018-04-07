@@ -1,0 +1,34 @@
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="project">
+		<div class="project__card">
+			<a href="" class="project__image"><img src="https://media.gettyimages.com/photos/portrait-of-a-beautiful-young-student-girl-in-the-park-picture-id507838794" alt=""></a>
+			<div class="project__detail">
+				<h2 class="project__title"><a href="#"></a></h2>
+				<small class="project__category"><a href="#">Girl</a></small>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+ crossorigin="anonymous"></script>
+<script src="https://cdn.rawgit.com/ariona/hover3d/master/dist/js/jquery.hover3d.min.js"></script>
+<script>
+	$('.project').hover3d({
+		selector: '.project__card',
+		shine: true,
+		perspective: 1000
+	})
+</script>
+
+</html>

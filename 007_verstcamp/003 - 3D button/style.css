@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(green, yellowgreen);
+}
+button {
+  position: relative;
+  padding: 10px 20px;
+  background-color: aquamarine;
+  box-shadow: 2px 4px white;
+  border: none;
+  border-radius: 7px;
+  color: teal;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:active {
+  top: 4px;
+  box-shadow: 0 0;
+}
