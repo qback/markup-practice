@@ -2,81 +2,69 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Document</title>
-	<style>
-		.icon-bar {
-			background-color: #555;
-			float: left;
-			margin-right: 10px;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="optimize.css">
+  <title>Document</title>
+  <style>
+    .icon-bar {
+      display: flex;
+    }
 
-		.icon-bar_pos_inline {
-			width: auto;
-		}
+    .icon-bar__item {
+      flex-grow: 1;
+      background-color: blue;
+    }
 
-		.icon-bar a {
-			display: block;
-			text-align: center;
-			padding: 16px;
-			transition: all .3s ease;
-			color: white;
-			font-size: 36px;
-		}
+    .icon-bar__item:not(.icon-bar__item--state_active):hover {
+      background-color: brown;
+    }
 
-		.icon-bar_pos_inline a {
-			float: left;
-		}
+    .icon-bar__item--state_active {
+      background-color: blueviolet;
+    }
 
-		.icon-bar a:hover {
-			background-color: lightcoral;
-		}
+    .icon-bar__link {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      text-decoration: none;
+    }
 
-		.active {
-			background-color: lightcoral;
-		}
-	</style>
+    .icon-bar__link i {
+      font-size: 20px;
+      color: white;
+    }
+
+    .icon-bar--type_vertical {
+      display: inline-block;
+    }
+  </style>
 </head>
 
 <body>
-	<div class="icon-bar">
-		<a class="active" href="#">
-			<i class="fa fa-home"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-search"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-envelope"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-globe"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-trash"></i>
-		</a>
-	</div>
-
-	<div class="icon-bar icon-bar_pos_inline">
-		<a class="active" href="#">
-			<i class="fa fa-home"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-search"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-envelope"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-globe"></i>
-		</a>
-		<a href="#">
-			<i class="fa fa-trash"></i>
-		</a>
-	</div>
+  <ul class="icon-bar">
+    <li class="icon-bar__item icon-bar__item--state_active"><a href="#" class="icon-bar__link"><i class="fas fa-home"></i><span class="visually-hidden">Home</span></a></li>
+    <li class="icon-bar__item"><a href="#" class="icon-bar__link"><i class="fas fa-search"></i><span class="visually-hidden">Search</span></a></li>
+    <li class="icon-bar__item"><a href="#" class="icon-bar__link"><i class="fab fa-android"></i><span class="visually-hidden">Contacts</span></a></li>
+    <li class="icon-bar__item"><a href="#" class="icon-bar__link"><i class="fab fa-google"></i><span class="visually-hidden">Links</span></a></li>
+    <li class="icon-bar__item"><a href="#" class="icon-bar__link"><i class="fab fa-jenkins"></i><span class="visually-hidden">Delete</span></a></li>
+  </ul>
+  <div class="control-ui">
+    <button class="change">Change bar flow</button>
+  </div>
+  <script>
+    ; (function (arguments) {
+      const btn = document.querySelector('.change');
+      const bar = document.querySelector('.icon-bar');
+      btn.addEventListener('click', ev => {
+        bar.classList.toggle('icon-bar--type_vertical')
+      })
+    })()
+  </script>
 </body>
 
 </html>
