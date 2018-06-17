@@ -2,86 +2,124 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<style>
-		.accordion-block {
-			width: 50%;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .info {
+      width: 600px;
+      padding: 0;
+      margin-bottom: 1px;
+    }
 
-		.accordion {
-			background-color: lightcoral;
-			color: white;
-			cursor: pointer;
-			width: 100%;
-			padding: 10px;
-			text-align: left;
-			border: none;
-			outline: none;
-			transition: .3s all;
-		}
+    .info--state_hidden .info__body {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+      transition-property: all;
+      transition-duration: 0.5s;
+      transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    }
 
-		.accordion:hover,
-		.accordion.active {
-			background-color: coral;
-		}
+    .info--state_hidden .info__header::before {
+      content: "";
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      height: 13px;
+      width: 3px;
+      transform: translateY(-50%);
+      background-color: black;
+    }
 
-		.accordion:after {
-			content: '+';
-			font-size: 13px;
-			color: white !important;
-			float: right;
-			margin-left: 5px;
-		}
+    .info__header {
+      position: relative;
+      padding: 10px;
+      background-color: antiquewhite;
+      border: 1px solid brown;
+      cursor: pointer;
+    }
 
-		.accordion.active:after {
-			content: "-";
-		}
+    .info__header::after {
+      content: "";
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      height: 3px;
+      width: 13px;
+      transform: translateY(-50%);
+      background-color: black;
+    }
 
-		.panel {
-			padding: 0 10px;
-			background-color: white;
-			max-height: 0;
-			overflow: hidden;
-			transition: all .3s;
-		}
-	</style>
+    .info__body {
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid brown;
+      border-top: none;
+      transition-property: all;
+      transition-duration: 0.5s;
+      transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+      overflow-y: hidden;
+    }
+  </style>
 </head>
 
 <body>
-	<div class="accordion-block">
-		<button class="accordion">Section 1</button>
-		<div class="panel">
-			<p>Lorem ipsum...</p>
-		</div>
+  <div class="accordion" id="acc">
+    <div class="info">
+      <div class="info__header" tabindex="0">Info heading 1</div>
+      <div class="info__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ducimus, accusantium necessitatibus quas consequuntur
+        repellat sint. Dolor mollitia veniam, qui molestiae quis necessitatibus exercitationem doloribus, tempore voluptates,
+        possimus nulla temporibus? Sed voluptates porro fugiat sunt tempore a reiciendis voluptatibus dolores optio facere,
+        nihil fuga corporis quisquam quae veniam molestiae nobis?</div>
+    </div>
+    <div class="info">
+      <div class="info__header" tabindex="0">Info heading 2</div>
+      <div class="info__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ducimus, accusantium necessitatibus quas consequuntur
+        repellat sint. Dolor mollitia veniam, qui molestiae quis necessitatibus exercitationem doloribus, tempore voluptates,
+        possimus nulla temporibus? Sed voluptates porro fugiat sunt tempore a reiciendis voluptatibus dolores optio facere,
+        nihil fuga corporis quisquam quae veniam molestiae nobis?</div>
+    </div>
+    <div class="info">
+      <div class="info__header" tabindex="0">Info heading 3</div>
+      <div class="info__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ducimus, accusantium necessitatibus quas consequuntur
+        repellat sint. Dolor mollitia veniam, qui molestiae quis necessitatibus exercitationem doloribus, tempore voluptates,
+        possimus nulla temporibus? Sed voluptates porro fugiat sunt tempore a reiciendis voluptatibus dolores optio facere,
+        nihil fuga corporis quisquam quae veniam molestiae nobis?</div>
+    </div>
+  </div>
+  <script>
+    class Accordion {
+      constructor(el) {
+        this.accordion = document.querySelector(el);
+        this.blocks = Array.from(this.accordion.querySelectorAll('.info'));
+        this.headings = Array.from(this.accordion.querySelectorAll('.info__header'));
+        this.bodies = Array.from(this.accordion.querySelectorAll('.info__body'));
+        this.events();
+      }
+      events() {
+        document.addEventListener("DOMContentLoaded", this.hideAllBlocks.bind(this));
+        this.accordion.addEventListener('click', this.toggleBlockState.bind(this));
+      }
 
-		<button class="accordion">Section 2</button>
-		<div class="panel">
-			<p>Lorem ipsum... Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis suscipit perferendis dolorum cupiditate
-				enim facilis, aspernatur cum tenetur accusantium, porro, reprehenderit rem aperiam. Natus iusto optio, veniam officiis
-				provident aperiam! Porro consequatur eaque amet sed, aliquid possimus eum facilis ipsa quidem, esse voluptas aspernatur
-				veritatis assumenda magni officiis nobis illum!</p>
-		</div>
+      hideAllBlocks() {
+        this.blocks.forEach((item) => {
+          item.classList.add('info--state_hidden');
+        })
+      }
 
-		<button class="accordion">Section 3</button>
-		<div class="panel">
-			<p>Lorem ipsum...</p>
-		</div>
-	</div>
-	<script>
-		const acc = document.querySelector('.accordion-block');
-		acc.addEventListener('click', toggleAccItem);
-		function toggleAccItem({ target }) {
-			const button = target.closest('.accordion');
-			if (button) {
-				const panel = button.nextElementSibling;
-				button.classList.toggle('active');
-				panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
-			}
-		}
-	</script>
+      toggleBlockState(e) {
+        const target = e.target;
+        if (target.closest('.info__header')) {
+          target.closest('.info').classList.toggle('info--state_hidden');
+        }
+      }
+    }
+
+    const acc = new Accordion('#acc');
+  </script>
 </body>
 
 </html>
