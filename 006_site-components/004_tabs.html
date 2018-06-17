@@ -2,130 +2,115 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<style>
-		.tab {
-			overflow: hidden;
-			display: flex;
-			border: 1px solid grey;
-			background-color: lightgrey;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="optimize.css">
+  <style>
+    .tabs {
+      width: 600px;
+      border: 1px solid lightcoral;
+      border-bottom: none;
+    }
 
-		.tablink {
-			background-color: inherit;
-			border: none;
-			cursor: pointer;
-			padding: 14px 16px;
-			transition: 0.3s all;
-			outline: none;
-		}
+    .tabs__header {
+      display: flex;
+      background-color: bisque;
+      border-bottom: 1px solid lightcoral;
+    }
 
-		.tablink:hover {
-			background-color: darkgrey;
-		}
+    .tabs__link {
+      padding: 15px;
+      background-color: lightcoral;
+      border: none;
+    }
 
-		.tablink.active {
-			background-color: darkgrey;
-		}
+    .tabs__link--state_hidden {
+      background-color: bisque;
+    }
 
-		.tabcontent {
-			padding: 6px 12px;
-			border: 1px solid #ccc;
-			border-top: 0;
-			position: relative;
-		}
+    .tabs__link:hover {
+      background-color: beige;
+    }
 
-		.tabcontent span {
-			position: absolute;
-			right: 10px;
-			top: 10px;
-			cursor: pointer;
-		}
+    .tabs__link--state_active {
+      background-color: lightcoral;
+    }
 
-		.tabcontent {
-			animation: fadeEffect .5s;
-		}
+    .tabs__item {
+      padding: 10px;
+      border-bottom: 1px solid lightcoral;
+      animation: fadeEffect 0.5s;
+    }
 
-		@keyframes fadeEffect {
-			from {
-				opacity: 0;
-			}
-			to {
-				opacity: 1;
-			}
-		}
-	</style>
+    .tabs__item--state_hidden {
+      display: none;
+    }
+
+    @keyframes fadeEffect {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
-	<div class="tabs">
-		<div class="tab">
-			<button class="tablink" data-city="London">London</button>
-			<button class="tablink" data-city="Paris">Paris</button>
-			<button class="tablink" data-city="Tokyo">Tokyo</button>
-		</div>
+  <div class="tabs" id="tabs">
+    <header class="tabs__header">
+      <button class="tabs__link">Tab 1</button>
+      <button class="tabs__link">Tab 2</button>
+      <button class="tabs__link">Tab 3</button>
+    </header>
+    <div class="tabs__content">
+      <div class="tabs__item">001 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore quas qui voluptatem ex, suscipit
+        repellat quasi maiores quam eum vitae exercitationem laborum, sint eaque obcaecati dolorum soluta, sed in. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Repellat odit necessitatibus in sequi, libero doloremque.</div>
+      <div class="tabs__item">002 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore quas qui voluptatem ex, suscipit
+        repellat quasi maiores quam eum vitae exercitationem laborum, sint eaque obcaecati dolorum soluta, sed in. Lorem
+        ipsum dolor sit amet consectetur adipisicing elit. Dicta, magni?</div>
+      <div class="tabs__item">003 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore quas qui voluptatem ex, suscipit
+        repellat quasi maiores quam eum vitae exercitationem laborum, sint eaque obcaecati dolorum soluta, sed in.</div>
+    </div>
+  </div>
 
-		<div id="London" class="tabcontent">
-			<h3>London</h3>
-			<p>London is the capital city of England.</p>
-			<span>x</span>
-		</div>
+  </div>
+  <script>
+    class Tabs {
+      constructor(el) {
+        this.tabsBlock = document.querySelector(el);
+        this.links = Array.from(document.querySelectorAll('.tabs__link'));
+        this.items = Array.from(document.querySelectorAll('.tabs__item'));
+        this.switchTab(0);
+        this.events();
+      }
+      events() {
+        this.tabsBlock.addEventListener('click', this.activateTab.bind(this));
+      }
+      activateTab(e) {
+        const targetLink = e.target.closest('.tabs__link');
+        if (targetLink) {
+          const indx = this.links.indexOf(targetLink);
+          this.switchTab(indx);
+        }
+      }
+      switchTab(index) {
+        this.links.forEach((element, indx) => {
+          index === indx ? (element.classList.remove('tabs__link--state_hidden')) : (element.classList.add('tabs__link--state_hidden'));
+        });
+        this.items.forEach((element, indx) => {
+          index === indx ? (element.classList.remove('tabs__item--state_hidden')) : (element.classList.add('tabs__item--state_hidden'));
+        });
+      }
+    }
 
-		<div id="Paris" class="tabcontent">
-			<h3>Paris</h3>
-			<p>Paris is the capital of France.</p>
-			<span>x</span>
-		</div>
-
-		<div id="Tokyo" class="tabcontent">
-			<h3>Tokyo</h3>
-			<p>Tokyo is the capital of Japan.</p>
-			<span>x</span>
-		</div>
-	</div>
-	<script>
-		const tabs = document.querySelector('.tabs');
-		const tablinks = Array.from(tabs.getElementsByClassName('tablink'));
-		const tabcontents = Array.from(tabs.getElementsByClassName('tabcontent'));
-
-		clearAll();
-		showCity('Paris');
-
-		tabs.addEventListener('click', openCity);
-		tabs.addEventListener('click', closeParent);
-
-		function openCity({ target }) {
-			const tablink = target.closest('.tablink');
-			if (tablink) {
-				const cityName = tablink.dataset.city;
-				clearAll();
-				showCity(cityName);
-			}
-		}
-		function closeParent({ target }) {
-			const span = target.closest('.tabcontent span');
-			if (span) {
-				span.parentElement.style.display = 'none';
-			}
-		}
-		function clearAll() {
-			tablinks.forEach((item) => {
-				item.classList.remove('active');
-			});
-			tabcontents.forEach((item) => {
-				item.style.display = 'none';
-			})
-		}
-		function showCity(name) {
-			const link = document.querySelector(`.tablink[data-city=${name}]`);
-			const content = document.getElementById(name);
-			link.classList.add('active');
-			content.style.display = '';
-		}
-	</script>
+    const tabs = new Tabs('#tabs');
+  </script>
 
 </body>
 
