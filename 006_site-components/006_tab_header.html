@@ -2,115 +2,132 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<style>
-		.tab-header {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-		.nav {
-			display: flex;
-		}
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
 
-		.tablink {
-			flex: 1;
-			background-color: rgb(189, 188, 188);
-			border: none;
-			outline: none;
-			cursor: pointer;
-			padding: 14px 16px;
-			font-size: 15px;
-		}
+    .tab-header {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-		.tablink:hover,
-		.tablink.active {
-			background-color: #777;
-		}
+    .tab-header__promo-list {
+      display: flex;
+      flex-direction: column;
+      min-height: 80vh;
+      padding: 0;
+      margin: 0;
+    }
 
-		.tabcontent {
-			color: white;
-			padding: 30px;
-			text-align: center;
-			background-color: gray;
-		}
-	</style>
+    .tab-header__promo-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: inherit;
+      padding: 20px;
+    }
+
+    .tab-header__control-list {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      min-height: 20vh;
+      list-style: none;
+    }
+
+    .tab-header__control-item {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+    }
+
+    [class*="london"] {
+      background-color: lightblue;
+    }
+
+    [class*="paris"] {
+      background-color: lightgreen;
+    }
+
+    [class*="stambul"] {
+      background-color: lightseagreen;
+    }
+
+    [class*="new-york"] {
+      background-color: lightsalmon;
+    }
+  </style>
 </head>
 
 <body>
-	<div class="tab-header">
-		<div class="content">
-			<div id="London" class="tabcontent">
-				<h3>London</h3>
-				<p>London is the capital city of England.</p>
-			</div>
+  <header class="tab-header" id="tab-header">
+    <ul class="tab-header__promo-list" data-city="london">
+      <li class="tab-header__promo-item tab-header__promo-item--london" data-city="london">
+        <h2>London</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem nihil delectus ad impedit a illum!</p>
+      </li>
+      <li class="tab-header__promo-item tab-header__promo-item--paris" data-city="paris">
+        <h2>Paris</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem nihil delectus ad impedit a illum!</p>
+      </li>
+      <li class="tab-header__promo-item tab-header__promo-item--stambul" data-city="stambul">
+        <h2>Stambul</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem nihil delectus ad impedit a illum!</p>
+      </li>
+      <li class="tab-header__promo-item tab-header__promo-item--new-york" data-city="new-york">
+        <h2>New York</h2>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem nihil delectus ad impedit a illum!</p>
+      </li>
+    </ul>
+    <div class="tab-header__control-list">
+      <button class="tab-header__control-item tab-header__control-item--london" data-control="london">London</button>
+      <button class="tab-header__control-item tab-header__control-item--paris" data-control="paris">Paris</button>
+      <button class="tab-header__control-item tab-header__control-item--stambul" data-control="stambul">Stambul</button>
+      <button class="tab-header__control-item tab-header__control-item--new-york" data-control="new-york">New york</button>
+    </div>
+  </header>
 
-			<div id="Paris" class="tabcontent">
-				<h3>Paris</h3>
-				<p>Paris is the capital of France.</p>
-			</div>
+  <script>
+    class TabHeaders {
+      constructor(el) {
+        this.tabs = document.querySelector(el);
+        this.promos = Array.from(this.tabs.querySelectorAll('.tab-header__promo-item'));
+        this.controls = Array.from(this.tabs.querySelectorAll('.tab-header__control-item'));
+        this.events()
+      }
+      events() {
+        document.addEventListener('DOMContentLoaded', this.showPromo.bind(this, this.controls[0].dataset.control));
+        this.tabs.addEventListener('click', this.switchPromo.bind(this));
+      }
+      showPromo(data) {
+        this.promos.forEach((item, index) => item.dataset.city === data ? item.style.display = '' : item.style.display = 'none');
+      }
+      switchPromo(ev) {
+        const control = ev.target.closest('.tab-header__control-item');
+        if (!control) return;
+        this.showPromo(control.dataset.control);
+      }
+    }
 
-			<div id="Tokyo" class="tabcontent">
-				<h3>Tokyo</h3>
-				<p>Tokyo is the capital of Japan.</p>
-				<p>Tokyo is the capital of Japan.</p>
-				<p>Tokyo is the capital of Japan.</p>
-				<p>Tokyo is the capital of Japan.</p>
-			</div>
-
-			<div id="Oslo" class="tabcontent">
-				<h3>Oslo</h3>
-				<p>Oslo is the capital of Norway.</p>
-			</div>
-		</div>
-		<div class="nav">
-			<button class="tablink" data-city="London" data-color="green">London</button>
-			<button class="tablink" data-city="Paris" data-color="blue">Paris</button>
-			<button class="tablink" data-city="Tokyo" data-color="purple">Tokyo</button>
-			<button class="tablink" data-city="Oslo" data-color="orange">Oslo</button>
-		</div>
-	</div>
-	<script>
-		const header = document.querySelector('.tab-header');
-		const links = Array.from(header.querySelectorAll('.tablink'));
-		const contents = Array.from(header.querySelectorAll('.tabcontent'));
-		function clearAll() {
-			links.forEach((item) => {
-				item.style.backgroundColor = '';
-			});
-			contents.forEach((item) => {
-				item.style.display = 'none';
-			})
-		}
-		function showCity(name, color) {
-			const link = document.querySelector(`.tablink[data-city=${name}]`);
-			const content = document.getElementById(name);
-			link.style.backgroundColor = color;
-			content.style.backgroundColor = color;
-			content.style.display = '';
-		}
-
-		clearAll();
-		showCity('London', 'green');
-
-		header.addEventListener('click', openCity);
-
-		function openCity({ target }) {
-			const tablink = target.closest('.tablink');
-			if (tablink) {
-				const cityName = tablink.dataset.city;
-				const color = tablink.dataset.color;
-				clearAll();
-				showCity(cityName, color);
-			}
-		}
-
-
-	</script>
+    const tabs = new TabHeaders('#tab-header');
+  </script>
 </body>
 
 </html>
